@@ -1,11 +1,10 @@
 import mongoose from 'mongoose';
 
 export const connectDb = async () => {
-  const dbUri = process.env.MONGODB_URI ?? '';
   try {
-    await mongoose.connect(dbUri);
+    await mongoose.connect(process.env.DB_URI || '');
   } catch (error) {
-    console.log(error);
+    console.log('接続エラーを確認する', error);
     throw new Error();
   }
 };
